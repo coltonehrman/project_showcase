@@ -1,0 +1,13 @@
+.navlink {
+  margin: 35px 0;
+  margin-left: 35px;
+  color: #9DA3B9;
+  text-decoration: none;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.navlink--active {
+  color: #000;
+  border-right: 2px solid #705CF1;
+}

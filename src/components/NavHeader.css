@@ -1,0 +1,10 @@
+.navheader {
+  padding-left: 35px;
+  padding-top: 25px;
+}
+
+.navheader--title {
+  margin: 0;
+  color: #3F3F3F;
+  font-size: 1.15rem;
+}

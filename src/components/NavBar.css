@@ -1,0 +1,9 @@
+.navbar {
+  height: 100%;
+  width: 20%;
+  background-color: #fff;
+}
+
+.navbar--links {
+  margin: 50px 0;
+}
