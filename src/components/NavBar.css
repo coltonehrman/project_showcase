@@ -7,3 +7,7 @@
 .navbar--links {
   margin: 50px 0;
 }
+
+.navbar--links a {
+  text-decoration: none;
+}

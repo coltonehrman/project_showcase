@@ -59,13 +59,22 @@
 .dashboard--list {
   margin: 0;
   padding-left: 1.5rem;
-  list-style-type: square;
   color: #3F3F3F;
   font-weight: 600;
+  list-style: none;
 }
 
 .dashboard--list li {
   margin: 0.75rem 0;
+}
+
+.dashboard--list li::before {
+  content: "\2022";
+  display: inline-block;
+  color: #705CF1;
+  font-weight: 800;
+  margin-left: -1rem;
+  width: 1rem;
 }
 
 .drawing-image {
