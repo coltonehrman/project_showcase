@@ -3,8 +3,8 @@ import Card from './Card'
 import './Dashboard.css'
 
 const Title = ({ children }) => (
-  <div className="dashboard--title">
-    <h3 className="dashboard--title__h4">{children}</h3>
+  <div className="dashboard--header-title">
+    <h3 className="dashboard--header-title__h4">{children}</h3>
   </div>
 )
 
@@ -57,10 +57,39 @@ const TechTab = ({
   )
 }
 
+const SocialLink = ({
+  url,
+  icon
+}) => {
+  let Icon
+
+  if (icon === 'github') {
+    Icon = <i class="fa fa-github"></i>
+  }
+
+  return (
+    <a
+      href={url}
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      {Icon}
+    </a>
+  )
+}
+
 const Dashboard = () => {
   return (
     <div className="dashboard">
-      <Title>Project Planner / Showcase</Title>
+      <div className="dashboard--header">
+        <Title>
+          Project Planner / Showcase
+        </Title>
+
+        <div className="dashboard--header-links">
+          <SocialLink url="https://github.com" icon="github" />
+        </div>
+      </div>
       
       <Section title="Technologies Used">
         <TechTab color="#705CF1" first>React</TechTab>
@@ -88,9 +117,23 @@ const Dashboard = () => {
 
       <div style={{ display: 'flex' }}>
         <Section
-          title="Target Audience"
+          title="Goal"
           sectionStyle={{ flex: '1' }}
           bodyStyle={{ paddingRight: '12.5px' }}
+        >
+          <Card>
+            <ul className="dashboard--list">
+              <li>Create an all-in-one platform to plan projects</li>
+              <li>Be able to organize and showcase projects</li>
+              <li>Have a platform that forces planning beforehand</li>
+            </ul>
+          </Card>
+        </Section>
+
+        <Section
+          title="Target Audience"
+          sectionStyle={{ flex: '1' }}
+          bodyStyle={{ paddingLeft: '12.5px', paddingRight: '12.5px' }}
         >
           <Card>
             <ul className="dashboard--list">
@@ -119,6 +162,24 @@ const Dashboard = () => {
       </div>
 
       <Section title="Drawings">
+        <a href="https://i.ibb.co/hMNSRKW/IMG-1310.jpg" target="_blank" rel="noopener noreferrer">
+          <img className="drawing-image" src="https://i.ibb.co/hMNSRKW/IMG-1310.jpg" />
+        </a>
+
+        <a href="https://i.ibb.co/nwtsP3d/IMG-1308.jpg" target="_blank" rel="noopener noreferrer">
+          <img className="drawing-image" src="https://i.ibb.co/nwtsP3d/IMG-1308.jpg" />
+        </a>
+
+        <a href="https://i.ibb.co/M1mMxnQ/IMG-1311.jpg" target="_blank" rel="noopener noreferrer">
+          <img className="drawing-image" src="https://i.ibb.co/M1mMxnQ/IMG-1311.jpg" />
+        </a>
+
+        <a href="https://i.ibb.co/SrKxCGc/IMG-1309.jpg" target="_blank" rel="noopener noreferrer">
+          <img className="drawing-image" src="https://i.ibb.co/SrKxCGc/IMG-1309.jpg" />
+        </a>
+      </Section>
+
+      <Section title="Screenshots">
         <a href="https://i.ibb.co/hMNSRKW/IMG-1310.jpg" target="_blank" rel="noopener noreferrer">
           <img className="drawing-image" src="https://i.ibb.co/hMNSRKW/IMG-1310.jpg" />
         </a>

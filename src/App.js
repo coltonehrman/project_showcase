@@ -19,7 +19,27 @@ function App() {
           </Route>
 
           <Route path="/react/components" exact>
-            <Dashboard />
+            
+          </Route>
+
+          <Route path="/timeline" exact>
+            
+          </Route>
+
+          <Route path="/uml" exact>
+            
+          </Route>
+
+          <Route path="/tasks" exact>
+            
+          </Route>
+
+          <Route path="/statistics" exact>
+            
+          </Route>
+
+          <Route path="/settings" exact>
+            
           </Route>
         </div>
       </div>
