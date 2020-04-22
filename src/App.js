@@ -5,6 +5,7 @@ import {
 } from 'react-router-dom'
 import NavBar from './components/NavBar'
 import Dashboard from './components/Dashboard'
+import DesignIdeas from './components/DesignIdeas'
 import './App.css';
 
 function App() {
@@ -16,6 +17,10 @@ function App() {
 
           <Route path="/" exact>
             <Dashboard />
+          </Route>
+
+          <Route path="/design/ideas" exact>
+            <DesignIdeas />
           </Route>
 
           <Route path="/react/components" exact>

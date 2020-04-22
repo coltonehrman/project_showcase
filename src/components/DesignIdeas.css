@@ -1,0 +1,5 @@
+.design-ideas {
+  flex: 4;
+  overflow: scroll;
+  padding-bottom: 25px;
+}

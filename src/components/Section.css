@@ -1,0 +1,16 @@
+.section {
+  display: flex;
+  flex-direction: column;
+}
+
+.section--title {
+  margin: 10px 25px;
+  color: #9DA3B9;
+  text-transform: uppercase;
+}
+
+.section--body {
+  padding: 10px 25px;
+  padding-top: 0;
+  display: flex;
+}

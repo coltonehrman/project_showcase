@@ -1,4 +1,5 @@
 import React from 'react'
+import Section from './Section'
 import Card from './Card'
 import './Dashboard.css'
 
@@ -7,26 +8,6 @@ const Title = ({ children }) => (
     <h3 className="dashboard--header-title__h4">{children}</h3>
   </div>
 )
-
-const Section = ({
-  title,
-  sectionStyle = {},
-  bodyStyle = {},
-  children
-}) => {
-  return (
-    <div className="dashboard--section" style={sectionStyle}>
-      <h6
-        className="dashboard--section-title"
-      >
-          {title}
-        </h6>
-      <div className="dashboard--section-body" style={bodyStyle}>
-        {children}
-      </div>
-    </div>
-  )
-}
 
 const TechTab = ({
   description,
@@ -64,7 +45,7 @@ const SocialLink = ({
   let Icon
 
   if (icon === 'github') {
-    Icon = <i class="fa fa-github"></i>
+    Icon = <i className="fa fa-github"></i>
   }
 
   return (
@@ -163,23 +144,23 @@ const Dashboard = () => {
 
       <Section title="Drawings">
         <a href="https://i.ibb.co/hMNSRKW/IMG-1310.jpg" target="_blank" rel="noopener noreferrer">
-          <img className="drawing-image" src="https://i.ibb.co/hMNSRKW/IMG-1310.jpg" />
+          <img className="drawing-image" alt="Drawings-1" src="https://i.ibb.co/hMNSRKW/IMG-1310.jpg" />
         </a>
 
         <a href="https://i.ibb.co/nwtsP3d/IMG-1308.jpg" target="_blank" rel="noopener noreferrer">
-          <img className="drawing-image" src="https://i.ibb.co/nwtsP3d/IMG-1308.jpg" />
+          <img className="drawing-image" alt="Drawings-2" src="https://i.ibb.co/nwtsP3d/IMG-1308.jpg" />
         </a>
 
         <a href="https://i.ibb.co/M1mMxnQ/IMG-1311.jpg" target="_blank" rel="noopener noreferrer">
-          <img className="drawing-image" src="https://i.ibb.co/M1mMxnQ/IMG-1311.jpg" />
+          <img className="drawing-image" alt="Drawings-3" src="https://i.ibb.co/M1mMxnQ/IMG-1311.jpg" />
         </a>
 
         <a href="https://i.ibb.co/SrKxCGc/IMG-1309.jpg" target="_blank" rel="noopener noreferrer">
-          <img className="drawing-image" src="https://i.ibb.co/SrKxCGc/IMG-1309.jpg" />
+          <img className="drawing-image" alt="Drawings-4" src="https://i.ibb.co/SrKxCGc/IMG-1309.jpg" />
         </a>
       </Section>
 
-      <Section title="Screenshots">
+      {/* <Section title="Screenshots">
         <a href="https://i.ibb.co/hMNSRKW/IMG-1310.jpg" target="_blank" rel="noopener noreferrer">
           <img className="drawing-image" src="https://i.ibb.co/hMNSRKW/IMG-1310.jpg" />
         </a>
@@ -195,7 +176,7 @@ const Dashboard = () => {
         <a href="https://i.ibb.co/SrKxCGc/IMG-1309.jpg" target="_blank" rel="noopener noreferrer">
           <img className="drawing-image" src="https://i.ibb.co/SrKxCGc/IMG-1309.jpg" />
         </a>
-      </Section>
+      </Section> */}
     </div>
   )
 }

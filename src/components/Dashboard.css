@@ -26,23 +26,6 @@
   font-size: 2.25rem;
 }
 
-.dashboard--section {
-  display: flex;
-  flex-direction: column;
-}
-
-.dashboard--section-title {
-  margin: 10px 25px;
-  color: #9DA3B9;
-  text-transform: uppercase;
-}
-
-.dashboard--section-body {
-  padding: 10px 25px;
-  padding-top: 0;
-  display: flex;
-}
-
 .dashboard--techtab {
   color: #fff;
   font-weight: 800;

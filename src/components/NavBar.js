@@ -19,6 +19,10 @@ const NavBar = () => {
           <NavLink text="Dashboard" active={path === '/'} />
         </Link>
 
+        <Link to="/design/ideas">
+          <NavLink text="Design Ideas" active={path === '/design/ideas'} />
+        </Link>
+
         <Link to="/react/components">
           <NavLink text="React Components" active={path === '/react/components'} />
         </Link>
