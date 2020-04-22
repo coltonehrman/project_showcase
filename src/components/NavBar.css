@@ -1,6 +1,6 @@
 .navbar {
   height: 100%;
-  width: 20%;
+  flex: 1;
   background-color: #fff;
 }
 

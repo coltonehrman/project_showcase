@@ -2,10 +2,11 @@ import React from 'react'
 import './NavLink.css'
 
 const NavLink = ({
-  text
+  text,
+  active = false
 }) => {
   return (
-    <div className="navlink">
+    <div className={`navlink ${active ? 'navlink--active' : ''}`}>
       {text}
     </div>
   )

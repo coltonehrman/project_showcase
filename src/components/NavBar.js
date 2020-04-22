@@ -9,7 +9,7 @@ const NavBar = () => {
       <NavHeader title="Project Name" />
       
       <div className="navbar--links">
-        <NavLink text="Dashboard" />
+        <NavLink text="Dashboard" active />
         <NavLink text="Timeline" />
         <NavLink text="UML" />
         <NavLink text="Tasks" />
