@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import TextareaAutosize from 'react-textarea-autosize';
 import TechSection from './TechSection'
 import Section from './Section'
 import Card from './Card'
@@ -32,6 +33,25 @@ const SocialLink = ({
 }
 
 const Dashboard = () => {
+  const [description, setDescription] = useState(localStorage.getItem('description') || '')
+  const [editing, setEditing] = useState(false)
+  const [height, setHeight] = useState('10')
+
+  const setValue = ({ target }) => {
+    const { value } = target
+    setDescription(value)
+  }
+
+  const startEditing = () => {
+    // setHeight(`${description.split('\n').length * 16}px`)
+    setEditing(true)
+  }
+
+  const doneEditing = () => {
+    setEditing(false)
+    localStorage.setItem('description', description)
+  }
+
   return (
     <div className="dashboard">
       <div className="dashboard--header">
@@ -47,19 +67,22 @@ const Dashboard = () => {
       <TechSection />
 
       <Section title="Project Description">
-        <Card>
+        <Card onClick={startEditing}>
           <h4
             className="dashboard--description"
           >
-            <p>
-              A project planner for beginnners to help them plan out projects step by step.
-              Helps junior developers start projects from sratch, with all things in mind before they even start coding.
-              Focuses on project planning, setup, testing, and design.
-            </p>
-            <p>
-              A project showcase for beginners to show off their work / projects to recruiters and friends.
-              Helps the developer to really pick out and show the "sparkles" in each and every project.
-            </p>
+            {editing &&
+              <TextareaAutosize
+                value={description}
+                className="dashboard--description__edit"
+                onChange={(e) => setDescription(e.target.value)}
+                onBlur={doneEditing}
+                autoFocus
+              />
+            }
+            {!editing && description.split('\n').map(d => (
+              <p>{d}</p>
+            ))}
           </h4>
         </Card>
       </Section>

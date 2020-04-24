@@ -51,6 +51,15 @@
   line-height: 1.5;
 }
 
+.dashboard--description__edit {
+  border: 0;
+  width: 100%;
+  font-weight: 600;
+  font-size: 1rem;
+  display: block;
+  line-height: 1.5;
+}
+
 .dashboard--description p {
   margin: 0;
 }
