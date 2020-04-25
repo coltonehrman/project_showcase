@@ -1,8 +1,10 @@
-import React, { useState } from 'react'
+import React from 'react'
 import TechSection from './TechSection'
 import DescriptionSection from './DescriptionSection'
+import GoalSection from './GoalSection'
+import TargetAudienceSection from './TargetAudienceSection'
+import ImpactSection from './ImpactSection'
 import Section from './Section'
-import Card from './Card'
 import './Dashboard.css'
 
 const Title = ({ children }) => (
@@ -46,53 +48,12 @@ const Dashboard = () => {
       </div>
       
       <TechSection />
-
       <DescriptionSection />
 
       <div style={{ display: 'flex' }}>
-        <Section
-          title="Goal"
-          sectionStyle={{ flex: '1' }}
-          bodyStyle={{ paddingRight: '12.5px' }}
-        >
-          <Card>
-            <ul className="dashboard--list">
-              <li>Create an all-in-one platform to plan projects</li>
-              <li>Be able to organize and showcase projects</li>
-              <li>Have a platform that forces planning beforehand</li>
-            </ul>
-          </Card>
-        </Section>
-
-        <Section
-          title="Target Audience"
-          sectionStyle={{ flex: '1' }}
-          bodyStyle={{ paddingLeft: '12.5px', paddingRight: '12.5px' }}
-        >
-          <Card>
-            <ul className="dashboard--list">
-              <li>Job Seekers</li>
-              <li>Students</li>
-              <li>Junior Developers</li>
-              <li>Project Managers</li>
-            </ul>
-          </Card>
-        </Section>
-
-        <Section
-          title="Impact"
-          sectionStyle={{ flex: '1' }}
-          bodyStyle={{ paddingLeft: '12.5px' }}
-        >
-          <Card>
-            <ul className="dashboard--list">
-              <li>Help out struggling young developers</li>
-              <li>Create a planner mindset</li>
-              <li>Relieve having to worry about the details</li>
-              <li>Reduce stress when starting a new project</li>
-            </ul>
-          </Card>
-        </Section>
+        <GoalSection />
+        <TargetAudienceSection />
+        <ImpactSection />
       </div>
 
       <Section title="Drawings">
@@ -112,24 +73,6 @@ const Dashboard = () => {
           <img className="drawing-image" alt="Drawings-4" src="https://i.ibb.co/SrKxCGc/IMG-1309.jpg" />
         </a>
       </Section>
-
-      {/* <Section title="Screenshots">
-        <a href="https://i.ibb.co/hMNSRKW/IMG-1310.jpg" target="_blank" rel="noopener noreferrer">
-          <img className="drawing-image" src="https://i.ibb.co/hMNSRKW/IMG-1310.jpg" />
-        </a>
-
-        <a href="https://i.ibb.co/nwtsP3d/IMG-1308.jpg" target="_blank" rel="noopener noreferrer">
-          <img className="drawing-image" src="https://i.ibb.co/nwtsP3d/IMG-1308.jpg" />
-        </a>
-
-        <a href="https://i.ibb.co/M1mMxnQ/IMG-1311.jpg" target="_blank" rel="noopener noreferrer">
-          <img className="drawing-image" src="https://i.ibb.co/M1mMxnQ/IMG-1311.jpg" />
-        </a>
-
-        <a href="https://i.ibb.co/SrKxCGc/IMG-1309.jpg" target="_blank" rel="noopener noreferrer">
-          <img className="drawing-image" src="https://i.ibb.co/SrKxCGc/IMG-1309.jpg" />
-        </a>
-      </Section> */}
     </div>
   )
 }

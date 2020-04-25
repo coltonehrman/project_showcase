@@ -80,6 +80,25 @@
   margin: 0.75rem 0;
 }
 
+.dashboard--list__edit {
+  border: 0;
+  width: 100%;
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+.dashboard--list__add {
+  border: 0;
+  background-color: #F5F6FA;
+  border-radius: 0.7rem;
+  width: 100%;
+  padding: 0.25rem 0;
+  margin-top: 0.5rem;
+  font-size: 1.25rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
 .dashboard--list li::before {
   content: "\2022";
   display: inline-block;
