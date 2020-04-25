@@ -4,7 +4,7 @@ import DescriptionSection from './DescriptionSection'
 import GoalSection from './GoalSection'
 import TargetAudienceSection from './TargetAudienceSection'
 import ImpactSection from './ImpactSection'
-import Section from './Section'
+import storage from '../controllers/storage'
 import '../css/Dashboard.css'
 
 const Title = ({ children }) => (
@@ -34,20 +34,27 @@ const SocialLink = ({
   )
 }
 
-const Dashboard = () => {
+const Dashboard = ({
+  project
+}) => {
+  console.log(project)
+  const store = storage.project(project)
+
   return (
     <div className="dashboard">
       <div className="dashboard--header">
         <Title>
+          {/* Need to use something like `store.getTitle()` here */}
           Project Planner / Showcase
         </Title>
 
         <div className="dashboard--header-links">
+          {/* Need to use something like `store.getLinks()` here */}
           <SocialLink url="https://github.com" icon="github" />
         </div>
       </div>
       
-      <TechSection />
+      <TechSection store={store} />
       <DescriptionSection />
 
       <div style={{ display: 'flex' }}>
