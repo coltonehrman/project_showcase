@@ -35,17 +35,6 @@ const SocialLink = ({
 const Dashboard = () => {
   const [description, setDescription] = useState(localStorage.getItem('description') || '')
   const [editing, setEditing] = useState(false)
-  const [height, setHeight] = useState('10')
-
-  const setValue = ({ target }) => {
-    const { value } = target
-    setDescription(value)
-  }
-
-  const startEditing = () => {
-    // setHeight(`${description.split('\n').length * 16}px`)
-    setEditing(true)
-  }
 
   const doneEditing = () => {
     setEditing(false)
@@ -67,7 +56,7 @@ const Dashboard = () => {
       <TechSection />
 
       <Section title="Project Description">
-        <Card onClick={startEditing}>
+        <Card onClick={() => setEditing(true)}>
           <h4
             className="dashboard--description"
           >
@@ -80,8 +69,8 @@ const Dashboard = () => {
                 autoFocus
               />
             }
-            {!editing && description.split('\n').map(d => (
-              <p>{d}</p>
+            {!editing && description.split('\n\n').map((d, i) => (
+              <p key={i}>{d}</p>
             ))}
           </h4>
         </Card>
