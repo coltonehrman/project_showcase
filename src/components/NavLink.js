@@ -1,5 +1,5 @@
 import React from 'react'
-import './NavLink.css'
+import '../css/NavLink.css'
 
 const NavLink = ({
   text,

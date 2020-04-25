@@ -5,7 +5,7 @@ import GoalSection from './GoalSection'
 import TargetAudienceSection from './TargetAudienceSection'
 import ImpactSection from './ImpactSection'
 import Section from './Section'
-import './Dashboard.css'
+import '../css/Dashboard.css'
 
 const Title = ({ children }) => (
   <div className="dashboard--header-title">

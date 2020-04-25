@@ -6,7 +6,7 @@ import {
 import NavBar from './components/NavBar'
 import Dashboard from './components/Dashboard'
 import DesignIdeas from './components/DesignIdeas'
-import './App.css';
+import './css/App.css';
 
 function App() {
   return (
