@@ -61,10 +61,13 @@ const TechTab = ({
   )
 }
 
-const TechSection = () => {
-  const [tech, setTech] = useState(JSON.parse(
-    localStorage.getItem('technologies') || '[]'
-  ))
+const TechSection = ({ store }) => {
+
+  const [tech, setTech] = useState(
+    store.getTech().map(t => ({
+      text: t, editing: false
+    }))
+  )
 
   const [editing, setEditing] = useState(false)
 
@@ -91,7 +94,7 @@ const TechSection = () => {
 
     setTech([...tech])
     setEditing(false)
-    localStorage.setItem('technologies', JSON.stringify(tech))
+    store.setTech(tech.map(t => t.text))
   }
 
   return (

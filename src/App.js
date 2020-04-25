@@ -16,7 +16,7 @@ function App() {
           <NavBar />
 
           <Route path="/" exact>
-            <Dashboard />
+            <Dashboard project="project-planner" />
           </Route>
 
           <Route path="/design/ideas" exact>
