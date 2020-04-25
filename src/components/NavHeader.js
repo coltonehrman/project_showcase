@@ -1,5 +1,5 @@
 import React from 'react'
-import './NavHeader.css'
+import '../css/NavHeader.css'
 
 const NavHeader = ({
   title

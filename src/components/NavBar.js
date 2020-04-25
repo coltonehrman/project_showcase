@@ -5,7 +5,7 @@ import {
 } from 'react-router-dom'
 import NavHeader from './NavHeader'
 import NavLink from './NavLink'
-import './NavBar.css'
+import '../css/NavBar.css'
 
 const NavBar = () => {
   const { pathname: path } = useLocation()

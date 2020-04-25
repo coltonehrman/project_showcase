@@ -1,6 +1,6 @@
 import React from 'react'
 import Section from './Section'
-import './DesignIdeas.css'
+import '../css/DesignIdeas.css'
 
 const DesignIdeas = () => {
   return (
