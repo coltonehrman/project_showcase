@@ -16,3 +16,18 @@
   -moz-box-shadow: 0 0px 10px 1px rgba(0, 0, 0, 0.15);
        box-shadow: 0 0px 10px 1px rgba(0, 0, 0, 0.15);
 }
+
+.navlink {
+  display: block;
+  margin: 35px 0;
+  margin-left: 35px;
+  color: #9DA3B9;
+  text-decoration: none;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.navlink--active {
+  color: #3F3F3F;
+  border-right: 2px solid #705CF1;
+}

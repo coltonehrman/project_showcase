@@ -1,52 +1,97 @@
 import React from 'react'
 import {
   Route,
-  Link,
-  useLocation,
+  NavLink,
   useParams
 } from 'react-router-dom'
 import NavHeader from './NavHeader'
-import NavLink from './NavLink'
 import storage from '../controllers/storage'
 import '../css/NavBar.css'
 
 const ProjectLinks = () => {
-  const { pathname: path } = useLocation()
   const { project } = useParams()
 
   return (
     <>
-      <Link to={`/${project}/`}>
-        <NavLink text="Dashboard" active={path === '/'} />
-      </Link>
+      <NavLink
+        to={`/${project}/`}
+        className="navlink"
+        activeClassName="navlink--active"
+        replace
+        exact
+      >
+        Dashboard
+      </NavLink>
 
-      <Link to={`/${project}/design/ideas`}>
-        <NavLink text="Design Ideas" active={path === '/design/ideas'} />
-      </Link>
+      <NavLink
+        to={`/${project}/design/ideas`}
+        className="navlink"
+        activeClassName="navlink--active"
+        replace
+        exact
+      >
+        Design Ideas
+      </NavLink>
 
-      <Link to={`/${project}/react-components`}>
-        <NavLink text="React Components" active={path === '/react/components'} />
-      </Link>
+      <NavLink
+        to={`/${project}/react-components`}
+        className="navlink"
+        activeClassName="navlink--active"
+        replace
+        exact
+      >
+        React Components
+      </NavLink>
 
-      <Link to={`/${project}/timeline`}>
-        <NavLink text="Timeline" active={path === '/timeline'} />
-      </Link>
+      <NavLink
+        to={`/${project}/timeline`}
+        className="navlink"
+        activeClassName="navlink--active"
+        replace
+        exact
+      >
+        Timeline
+      </NavLink>
 
-      <Link to={`/${project}/uml`}>
-        <NavLink text="UML" active={path === '/uml'} />
-      </Link>
+      <NavLink
+        to={`/${project}/uml`}
+        className="navlink"
+        activeClassName="navlink--active"
+        replace
+        exact
+      >
+        UML
+      </NavLink>
 
-      <Link to={`/${project}/tasks`}>
-        <NavLink text="Tasks" active={path === '/tasks'} />
-      </Link>
+      <NavLink
+        to={`/${project}/tasks`}
+        className="navlink"
+        activeClassName="navlink--active"
+        replace
+        exact
+      >
+        Tasks
+      </NavLink>
 
-      <Link to={`/${project}/statistics`}>
-        <NavLink text="Statistics" active={path === '/statistics'} />
-      </Link>
+      <NavLink
+        to={`/${project}/statistics`}
+        className="navlink"
+        activeClassName="navlink--active"
+        replace
+        exact
+      >
+        Statistics
+      </NavLink>
 
-      <Link to={`/${project}/settings`}>
-        <NavLink text="Settings" active={path === '/settings'} />
-      </Link>
+      <NavLink
+        to={`/${project}/settings`}
+        className="navlink"
+        activeClassName="navlink--active"
+        replace
+        exact
+      >
+        Settings
+      </NavLink>
     </>
   )
 }
@@ -61,13 +106,17 @@ const NavBar = () => {
       <div className="navbar--links">
         <Route path="/" exact>
           {projects.map((project, i) => (
-            <Link key={i} to={`/${project}/`}>
-              <NavLink text={project} />
-            </Link>
+            <NavLink
+              key={i}
+              to={`/${project}/`}
+              className="navlink"
+            >
+              {project}
+            </NavLink>
           ))}
         </Route>
 
-        <Route path="/:project" exact>
+        <Route path="/:project">
           <ProjectLinks />
         </Route>
       </div>

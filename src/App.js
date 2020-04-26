@@ -13,7 +13,7 @@ function App() {
       <div className="container">
         <NavBar />
 
-        <Route path="/:project/">
+        <Route path="/:project/" exact>
           <Dashboard />
         </Route>
 
