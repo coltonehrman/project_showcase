@@ -58,7 +58,7 @@ const Dashboard = ({
       <DescriptionSection store={store} />
 
       <div style={{ display: 'flex' }}>
-        <GoalSection />
+        <GoalSection store={store} />
         <TargetAudienceSection />
         <ImpactSection />
       </div>

@@ -62,7 +62,6 @@ const TechTab = ({
 }
 
 const TechSection = ({ store }) => {
-
   const [tech, setTech] = useState(
     store.getTech().map(t => ({
       text: t, editing: false
