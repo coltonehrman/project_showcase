@@ -65,6 +65,20 @@
   width: calc(100% - 50px);
 }
 
+.navlink--export {
+  color: #F5F6FA;
+  margin: 0 25px;
+  margin-bottom: 15px;
+  padding: 10px;
+  background-color: #705CF1;
+  border: 0;
+  border-radius: 0.5rem;
+  font-size: 11px;
+  text-align: center;
+  text-transform: uppercase;
+  width: calc(100% - 50px);
+}
+
 .navlink--mode {
   color: #F5F6FA;
   margin: 0 25px;

@@ -1,14 +1,16 @@
 import React, { useState } from 'react';
-import { Route } from 'react-router-dom'
+import { Route, useLocation } from 'react-router-dom'
 import NavBar from './components/NavBar'
 import Dashboard from './components/Dashboard'
 import DesignIdeas from './components/DesignIdeas'
+import storage from './controllers/storage'
 import './css/App.css'
 
 export const ModeContext = React.createContext('static')
 
 function App() {
   const [mode, setMode] = useState('static')
+  const { search } = useLocation()
 
   return (
     <ModeContext.Provider value={{ mode, setMode }}>
@@ -17,7 +19,13 @@ function App() {
           <NavBar />
 
           <Route path="/" exact>
-            <div style={{ flex: '4' }}></div>
+            {(search === '?export') ?
+              (
+                <div style={{ flex: '4', overflow: 'scroll', margin: '25px' }}>
+                  <pre>{storage.getJSON({ staticData: (mode === 'static') })}</pre>
+                </div>
+              ) : <div style={{ flex: '4' }}></div>
+            }
           </Route>
 
           <Route path="/:project/" exact>

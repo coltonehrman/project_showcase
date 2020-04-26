@@ -75,12 +75,21 @@ const ProjectLinks = () => {
 
       <div className="navbar--footer">
         {mode === 'edit' &&
-          <button
-            className="navlink navlink--add"
-            onClick={addNewProject}
-          >
-            + New Project
-          </button>
+          <>
+            <button
+              className="navlink navlink--add"
+              onClick={addNewProject}
+            >
+              + New Project
+            </button>
+
+            <NavLink
+              to="/?export"
+              className="navlink navlink--export"
+            >
+              Export Data
+            </NavLink>
+          </>
         }
 
         <button

@@ -15,6 +15,13 @@ const Storage = () => {
   }
 
   const _controller = {
+    getJSON: ({ staticData = false } = {}) => {
+      if (staticData) {
+        return JSON.stringify(_staticJSON, null, 2)
+      }
+
+      return JSON.stringify(_data, null, 2)
+    },
     getProjects: ({ staticData = false } = {}) => {
       if (staticData) {
         return Object.keys(_staticJSON.projects)
