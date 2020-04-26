@@ -1,12 +1,11 @@
-import React from 'react'
-import {
-  useParams
-} from 'react-router-dom'
+import React, { useContext } from 'react'
+import { useParams } from 'react-router-dom'
 import TechSection from './TechSection'
 import DescriptionSection from './DescriptionSection'
 import GoalSection from './GoalSection'
 import TargetAudienceSection from './TargetAudienceSection'
 import ImpactSection from './ImpactSection'
+import { ModeContext } from '../App'
 import storage from '../controllers/storage'
 import '../css/Dashboard.css'
 
@@ -38,8 +37,13 @@ const SocialLink = ({
 }
 
 const Dashboard = () => {
+  const { mode } = useContext(ModeContext)
+
   const { project } = useParams()
-  const store = storage.project(project)
+  
+  const store = storage.project(project, {
+    staticData: (mode === 'static')
+  })
 
   return (
     <div className="dashboard">
