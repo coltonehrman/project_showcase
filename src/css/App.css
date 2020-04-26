@@ -31,3 +31,22 @@
   color: #3F3F3F;
   border-right: 2px solid #705CF1;
 }
+
+.navlink--edit {
+  box-sizing: border-box;
+  border: 0;
+  width: calc(100% - 70px);
+  font-size: 1rem;
+}
+
+.navlink--add {
+  color: #3F3F3F;
+  margin: 25px;
+  margin-top: 0;
+  padding: 15px;
+  background-color: #F5F6FA;
+  border: 0;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  width: calc(100% - 50px);
+}

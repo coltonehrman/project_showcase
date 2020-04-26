@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import {
   Route,
   NavLink,
@@ -97,7 +97,32 @@ const ProjectLinks = () => {
 }
 
 const NavBar = () => {
-  const projects = storage.getProjects()
+  const [projects, setProjects] = useState(
+    storage.getProjects().map(project => ({
+      text: project, editing: false
+    }))
+  )
+
+  const addNewProject = () => {
+    setProjects([...projects, { text: '', editing: true }])
+  }
+
+  const setProject = (i) => (e) => {
+    projects[i].text = e.target.value
+    setProjects([...projects])
+  }
+
+  const saveProject = (i) => () => {
+    projects[i].editing = false
+
+    if (projects[i].text.trim() === '') {
+      projects.splice(i, 1)
+      return setProjects([...projects])
+    }
+
+    setProjects([...projects])
+    storage.project(projects[i].text)
+  }
 
   return (
     <div className="navbar">
@@ -106,14 +131,30 @@ const NavBar = () => {
       <div className="navbar--links">
         <Route path="/" exact>
           {projects.map((project, i) => (
-            <NavLink
-              key={i}
-              to={`/${project}/`}
-              className="navlink"
-            >
-              {project}
-            </NavLink>
+            (project.editing) ?
+              <input
+                key={i}
+                value={project.text}
+                className="navlink navlink--edit"
+                onChange={setProject(i)}
+                onBlur={saveProject(i)}
+                autoFocus
+              /> :
+              <NavLink
+                key={i}
+                to={`/${project.text}/`}
+                className="navlink"
+              >
+                {project.text}
+              </NavLink>
           ))}
+
+          <button
+            className="navlink navlink--add"
+            onClick={addNewProject}
+          >
+            + New Project
+          </button>
         </Route>
 
         <Route path="/:project">
