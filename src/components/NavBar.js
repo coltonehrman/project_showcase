@@ -200,7 +200,7 @@ const ProjectDetailLinks = () => {
 const NavBar = () => {
   return (
     <div className="navbar">
-      <NavHeader title="Project Name" />
+      {/* <NavHeader title="Project Name" /> */}
       
       <Route path="/" exact>
         <ProjectLinks />

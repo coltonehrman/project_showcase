@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, useHistory } from 'react-router-dom'
 import TechSection from './TechSection'
 import DescriptionSection from './DescriptionSection'
 import GoalSection from './GoalSection'
@@ -38,24 +38,28 @@ const SocialLink = ({
 
 const Dashboard = () => {
   const { mode } = useContext(ModeContext)
-
   const { project } = useParams()
+  const history = useHistory()
   
   const store = storage.project(project, {
     staticData: (mode === 'static')
   })
 
+  if (!store) {
+    history.replace('/')
+    return null
+  }
+
   return (
     <div className="dashboard">
       <div className="dashboard--header">
         <Title>
-          {/* Need to use something like `store.getTitle()` here */}
-          Project Planner / Showcase
+          {project}
         </Title>
 
         <div className="dashboard--header-links">
           {/* Need to use something like `store.getLinks()` here */}
-          <SocialLink url="https://github.com" icon="github" />
+          {/* <SocialLink url="https://github.com" icon="github" /> */}
         </div>
       </div>
       

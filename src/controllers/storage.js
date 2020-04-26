@@ -43,19 +43,18 @@ const Storage = () => {
         _get = () => _data.projects[project]
       }
 
+      if (!_get()) {
+        return null
+      }
+
       const _pc = {
         // GETTERS
-        getTitle: () => _get().title || '',
         getTech: () => _get().technologies || [],
         getDescription: () => _get().description || '',
         getGoals: () => _get().goals || [],
         getTargetAudience: () => _get().targetAudience || [],
         getImpacts: () => _get().impacts || [],
         // SETTERS
-        setTitle: (title) => {
-          _get().title = title
-          _save()
-        },
         setTech: (technologies) => {
           _get().technologies = technologies
           _save()
