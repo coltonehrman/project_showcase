@@ -13,6 +13,7 @@ const Storage = () => {
   }
 
   const _controller = {
+    getProjects: () => Object.keys(_data.projects),
     project: (project) => {
       const _get = () => _data.projects[project]
 

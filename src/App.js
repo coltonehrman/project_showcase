@@ -1,6 +1,5 @@
 import React from 'react';
 import {
-  HashRouter as Router,
   Route
 } from 'react-router-dom'
 import NavBar from './components/NavBar'
@@ -10,45 +9,43 @@ import './css/App.css';
 
 function App() {
   return (
-    <Router>
-      <div className="App">
-        <div className="container">
-          <NavBar />
+    <div className="App">
+      <div className="container">
+        <NavBar />
 
-          <Route path="/" exact>
-            <Dashboard project="project-planner" />
-          </Route>
+        <Route path="/:project/">
+          <Dashboard />
+        </Route>
 
-          <Route path="/design/ideas" exact>
-            <DesignIdeas />
-          </Route>
+        <Route path="/:project/design/ideas" exact>
+          <DesignIdeas />
+        </Route>
 
-          <Route path="/react/components" exact>
-            
-          </Route>
+        <Route path="/:project/react/components" exact>
+          
+        </Route>
 
-          <Route path="/timeline" exact>
-            
-          </Route>
+        <Route path="/:project/timeline" exact>
+          
+        </Route>
 
-          <Route path="/uml" exact>
-            
-          </Route>
+        <Route path="/:project/uml" exact>
+          
+        </Route>
 
-          <Route path="/tasks" exact>
-            
-          </Route>
+        <Route path="/:project/tasks" exact>
+          
+        </Route>
 
-          <Route path="/statistics" exact>
-            
-          </Route>
+        <Route path="/:project/statistics" exact>
+          
+        </Route>
 
-          <Route path="/settings" exact>
-            
-          </Route>
-        </div>
+        <Route path="/:project/settings" exact>
+          
+        </Route>
       </div>
-    </Router>
+    </div>
   )
 }
 

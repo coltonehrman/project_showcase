@@ -1,4 +1,7 @@
 import React from 'react'
+import {
+  useParams
+} from 'react-router-dom'
 import TechSection from './TechSection'
 import DescriptionSection from './DescriptionSection'
 import GoalSection from './GoalSection'
@@ -34,10 +37,8 @@ const SocialLink = ({
   )
 }
 
-const Dashboard = ({
-  project
-}) => {
-  console.log(project)
+const Dashboard = () => {
+  const { project } = useParams()
   const store = storage.project(project)
 
   return (
