@@ -55,7 +55,7 @@ const Dashboard = ({
       </div>
       
       <TechSection store={store} />
-      <DescriptionSection />
+      <DescriptionSection store={store} />
 
       <div style={{ display: 'flex' }}>
         <GoalSection />

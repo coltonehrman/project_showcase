@@ -3,13 +3,16 @@ import TextareaAutosize from 'react-textarea-autosize'
 import Section from './Section'
 import Card from './Card'
 
-const DescriptionSection = () => {
-  const [description, setDescription] = useState(localStorage.getItem('description') || '')
+const DescriptionSection = ({ store }) => {
+  const [description, setDescription] = useState(
+    store.getDescription()
+  )
+  
   const [editing, setEditing] = useState(false)
 
   const doneEditing = () => {
     setEditing(false)
-    localStorage.setItem('description', description)
+    store.setDescription(description)
   }
 
   return (
