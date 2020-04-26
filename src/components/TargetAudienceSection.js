@@ -2,12 +2,12 @@ import React, { useState } from 'react'
 import Section from './Section'
 import Card from './Card'
 
-const TargetAudienceSection = () => {
-  const STORAGE_KEY = 'target_audience'
-
-  const [audience, setAudience] = useState(JSON.parse(
-    localStorage.getItem(STORAGE_KEY) || '[]'
-  ))
+const TargetAudienceSection = ({ store }) => {
+  const [audience, setAudience] = useState(
+    store.getTargetAudience().map(ta => ({
+      text: ta, editing: false
+    }))
+  )
 
   const [editing, setEditing] = useState(false)
 
@@ -35,12 +35,12 @@ const TargetAudienceSection = () => {
     }
 
     setAudience([...audience])
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(audience))
+    store.setTargetAudience(audience.map(ta => ta.text))
   }
 
   return (
     <Section
-      title="Impact"
+      title="Target Audience"
       sectionStyle={{ flex: '1' }}
       bodyStyle={{ paddingLeft: '12.5px' }}
     >
