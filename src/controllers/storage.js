@@ -1,3 +1,5 @@
+import _staticJSON from '../data.json'
+
 const Storage = () => {
   const STORAGE_KEY = 'projects_data'
 
@@ -13,9 +15,27 @@ const Storage = () => {
   }
 
   const _controller = {
-    getProjects: () => Object.keys(_data.projects),
-    project: (project) => {
-      const _get = () => _data.projects[project]
+    getProjects: ({ staticData = false } = {}) => {
+      if (staticData) {
+        return Object.keys(_staticJSON.projects)
+      }
+
+      return Object.keys(_data.projects)
+    },
+    addProject: (project) => {
+      if (!_data.projects[project]) {
+        _data.projects[project] = {}
+        _save()
+      }
+    },
+    project: (project, { staticData = false } = {}) => {
+      let _get
+
+      if (staticData) {
+        _get = () => _staticJSON.projects[project]
+      } else {
+        _get = () => _data.projects[project]
+      }
 
       const _pc = {
         // GETTERS
@@ -50,12 +70,6 @@ const Storage = () => {
           _get().impacts = impacts
           _save()
         }
-      }
-
-      // Initalize project if not set already
-      if (!_get()) {
-        _data.projects[project] = {}
-        _save()
       }
 
       return _pc

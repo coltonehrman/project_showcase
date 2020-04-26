@@ -1,8 +1,11 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import Section from './Section'
 import Card from './Card'
+import { ModeContext } from '../App'
 
 const TargetAudienceSection = ({ store }) => {
+  const { mode } = useContext(ModeContext)
+  
   const [audience, setAudience] = useState(
     store.getTargetAudience().map(ta => ({
       text: ta, editing: false
@@ -22,8 +25,10 @@ const TargetAudienceSection = ({ store }) => {
   }
 
   const editAudience = (i) => () => {
-    audience[i].editing = true
-    setAudience([...audience])
+    if (mode === 'edit') {
+      audience[i].editing = true
+      setAudience([...audience])
+    }
   }
 
   const doneEditing = (i) => () => {
@@ -65,7 +70,7 @@ const TargetAudienceSection = ({ store }) => {
           ))}
         </ul>
 
-        {!editing &&
+        {(mode === 'edit') && !editing &&
           <button
             className="dashboard--list__add"
             onClick={addAudience}

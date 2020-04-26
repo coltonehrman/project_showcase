@@ -1,8 +1,11 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import Section from './Section'
 import Card from './Card'
+import { ModeContext } from '../App'
 
 const ImpactSection = ({ store }) => {
+  const { mode } = useContext(ModeContext)
+
   const [impacts, setImpacts] = useState(
     store.getImpacts().map(i => ({
       text: i, editing: false
@@ -22,8 +25,10 @@ const ImpactSection = ({ store }) => {
   }
 
   const editImpact = (i) => () => {
-    impacts[i].editing = true
-    setImpacts([...impacts])
+    if (mode === 'edit') {
+      impacts[i].editing = true
+      setImpacts([...impacts])
+    }
   }
 
   const doneEditing = (i) => () => {
@@ -65,7 +70,7 @@ const ImpactSection = ({ store }) => {
           ))}
         </ul>
 
-        {!editing &&
+        {(mode === 'edit') && !editing &&
           <button
             className="dashboard--list__add"
             onClick={addImpact}

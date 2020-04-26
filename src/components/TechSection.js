@@ -1,5 +1,6 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import Section from './Section'
+import { ModeContext } from '../App'
 
 const noop = () => {}
 
@@ -62,6 +63,8 @@ const TechTab = ({
 }
 
 const TechSection = ({ store }) => {
+  const { mode } = useContext(ModeContext)
+
   const [tech, setTech] = useState(
     store.getTech().map(t => ({
       text: t, editing: false
@@ -81,8 +84,10 @@ const TechSection = ({ store }) => {
   }
 
   const setEditingFor = (i) => () => {
-    tech[i].editing = true
-    setEditing(true)
+    if (mode === 'edit') {
+      tech[i].editing = true
+      setEditing(true)
+    }
   }
 
   const finishEditingTech = (i) => () => {
@@ -112,7 +117,7 @@ const TechSection = ({ store }) => {
         </TechTab>
       ))}
 
-      {!editing && <TechTab
+      {(mode === 'edit') && !editing && <TechTab
         last
         color="transparent"
         styles={{

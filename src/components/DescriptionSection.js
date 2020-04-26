@@ -1,9 +1,12 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import TextareaAutosize from 'react-textarea-autosize'
 import Section from './Section'
 import Card from './Card'
+import { ModeContext } from '../App'
 
 const DescriptionSection = ({ store }) => {
+  const { mode } = useContext(ModeContext)
+
   const [description, setDescription] = useState(
     store.getDescription()
   )
@@ -17,7 +20,7 @@ const DescriptionSection = ({ store }) => {
 
   return (
     <Section title="Project Description">
-      <Card onClick={() => setEditing(true)}>
+      <Card onClick={() => setEditing(mode === 'edit')}>
         <h4
           className="dashboard--description"
         >

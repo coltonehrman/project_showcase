@@ -1,8 +1,11 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import Section from './Section'
 import Card from './Card'
+import { ModeContext } from '../App'
 
 const GoalSection = ({ store }) => {
+  const { mode } = useContext(ModeContext)
+
   const [goals, setGoals] = useState(
     store.getGoals().map(g => ({
       text: g, editing: false
@@ -22,8 +25,10 @@ const GoalSection = ({ store }) => {
   }
 
   const editGoal = (i) => () => {
-    goals[i].editing = true
-    setGoals([...goals])
+    if (mode === 'edit') {
+      goals[i].editing = true
+      setGoals([...goals])
+    }
   }
 
   const doneEditing = (i) => () => {
@@ -65,7 +70,7 @@ const GoalSection = ({ store }) => {
           ))}
         </ul>
 
-        {!editing &&
+        {(mode === 'edit') && !editing &&
           <button
             className="dashboard--list__add"
             onClick={addGoal}
