@@ -2,12 +2,12 @@ import React, { useState } from 'react'
 import Section from './Section'
 import Card from './Card'
 
-const ImpactSection = () => {
-  const STORAGE_KEY = 'impacts'
-
-  const [impacts, setImpacts] = useState(JSON.parse(
-    localStorage.getItem(STORAGE_KEY) || '[]'
-  ))
+const ImpactSection = ({ store }) => {
+  const [impacts, setImpacts] = useState(
+    store.getImpacts().map(i => ({
+      text: i, editing: false
+    }))
+  )
 
   const [editing, setEditing] = useState(false)
 
@@ -35,7 +35,7 @@ const ImpactSection = () => {
     }
 
     setImpacts([...impacts])
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(impacts))
+    store.setImpacts(impacts.map(i => i.text))
   }
 
   return (

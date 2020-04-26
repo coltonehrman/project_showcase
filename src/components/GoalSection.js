@@ -2,12 +2,12 @@ import React, { useState } from 'react'
 import Section from './Section'
 import Card from './Card'
 
-const GoalSection = () => {
-  const STORAGE_KEY = 'goals'
-
-  const [goals, setGoals] = useState(JSON.parse(
-    localStorage.getItem(STORAGE_KEY) || '[]'
-  ))
+const GoalSection = ({ store }) => {
+  const [goals, setGoals] = useState(
+    store.getGoals().map(g => ({
+      text: g, editing: false
+    }))
+  )
 
   const [editing, setEditing] = useState(false)
 
@@ -35,7 +35,7 @@ const GoalSection = () => {
     }
 
     setGoals([...goals])
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(goals))
+    store.setGoals(goals.map(g => g.text))
   }
 
   return (

@@ -55,12 +55,12 @@ const Dashboard = ({
       </div>
       
       <TechSection store={store} />
-      <DescriptionSection />
+      <DescriptionSection store={store} />
 
       <div style={{ display: 'flex' }}>
-        <GoalSection />
-        <TargetAudienceSection />
-        <ImpactSection />
+        <GoalSection store={store} />
+        <TargetAudienceSection store={store} />
+        <ImpactSection store={store} />
       </div>
 
       {/* <Section title="Drawings">

@@ -23,7 +23,7 @@ const Storage = () => {
         getDescription: () => _get().description || '',
         getGoals: () => _get().goals || [],
         getTargetAudience: () => _get().targetAudience || [],
-        getImpact: () => _get().impact || [],
+        getImpacts: () => _get().impacts || [],
         // SETTERS
         setTitle: (title) => {
           _get().title = title
@@ -45,8 +45,8 @@ const Storage = () => {
           _get().targetAudience = targetAudience
           _save()
         },
-        setImpact: (impact) => {
-          _get().impact = impact
+        setImpacts: (impacts) => {
+          _get().impacts = impacts
           _save()
         }
       }
