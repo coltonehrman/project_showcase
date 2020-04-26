@@ -1,24 +1,31 @@
-import React, { useState, useContext } from 'react'
-import {
-  Route,
-  NavLink,
-  useParams
-} from 'react-router-dom'
-import NavHeader from './NavHeader'
+import React, { useState, useContext, useEffect } from 'react'
+import { Route, NavLink, useParams } from 'react-router-dom'
 import { ModeContext } from '../App'
 import storage from '../controllers/storage'
 import '../css/NavBar.css'
 
-const ProjectLinks = () => {
-  const { mode } = useContext(ModeContext)
-
-  const [projects, setProjects] = useState(
-    storage.getProjects({
-      staticData: (mode === 'static')
-    }).map(project => ({
-      text: project, editing: false
-    }))
+const NavHeader = ({ title }) => {
+  return (
+    <div className="navheader">
+      <h4 className="navheader--title">{title}</h4>
+    </div>
   )
+}
+
+const ProjectLinks = () => {
+  const { mode, setMode } = useContext(ModeContext)
+
+  const [projects, setProjects] = useState(null)
+
+  useEffect(() => {
+    setProjects(
+      storage.getProjects({
+        staticData: (mode === 'static')
+      }).map(project => ({
+        text: project, editing: false
+      }))
+    )
+  }, [mode])
 
   const addNewProject = () => {
     setProjects([...projects, { text: '', editing: true }])
@@ -41,35 +48,54 @@ const ProjectLinks = () => {
     storage.addProject(projects[i].text)
   }
 
+  if (!projects) return null
+
   return (
     <>
-      {projects.map((project, i) => (
-        (project.editing) ?
-          <input
-            key={i}
-            value={project.text}
-            className="navlink navlink--edit"
-            onChange={setProject(i)}
-            onBlur={saveProject(i)}
-            autoFocus
-          /> :
-          <NavLink
-            key={i}
-            to={`/${project.text}/`}
-            className="navlink"
-          >
-            {project.text}
-          </NavLink>
-      ))}
+      <div className="navbar--links">
+        {projects.map((project, i) => (
+          (project.editing) ?
+            <input
+              key={i}
+              value={project.text}
+              className="navlink navlink--edit"
+              onChange={setProject(i)}
+              onBlur={saveProject(i)}
+              autoFocus
+            /> :
+            <NavLink
+              key={i}
+              to={`/${project.text}/`}
+              className="navlink"
+            >
+              {project.text}
+            </NavLink>
+        ))}
+      </div>
 
-      {mode === 'edit' &&
+      <div className="navbar--footer">
+        {mode === 'edit' &&
+          <button
+            className="navlink navlink--add"
+            onClick={addNewProject}
+          >
+            + New Project
+          </button>
+        }
+
         <button
-          className="navlink navlink--add"
-          onClick={addNewProject}
+          className={`navlink navlink--mode navlink--mode__${mode}`}
+          onClick={() => {
+            if (mode === 'static') {
+              setMode('edit')
+            } else if (mode === 'edit') {
+              setMode('static')
+            }
+          }}
         >
-          + New Project
+          MODE: <span className="navlink--mode__type">{mode}</span>
         </button>
-      }
+      </div>
     </>
   )
 }
@@ -78,7 +104,7 @@ const ProjectDetailLinks = () => {
   const { project } = useParams()
 
   return (
-    <>
+    <div className="navbar--links">
       <NavLink
         to={`/${project}/`}
         className="navlink"
@@ -158,7 +184,7 @@ const ProjectDetailLinks = () => {
       >
         Settings
       </NavLink>
-    </>
+    </div>
   )
 }
 
@@ -167,15 +193,13 @@ const NavBar = () => {
     <div className="navbar">
       <NavHeader title="Project Name" />
       
-      <div className="navbar--links">
-        <Route path="/" exact>
-          <ProjectLinks />
-        </Route>
+      <Route path="/" exact>
+        <ProjectLinks />
+      </Route>
 
-        <Route path="/:project">
-          <ProjectDetailLinks />
-        </Route>
-      </div>
+      <Route path="/:project">
+        <ProjectDetailLinks />
+      </Route>
     </div>
   )
 }

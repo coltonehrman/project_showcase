@@ -16,6 +16,10 @@ function App() {
         <div className="container">
           <NavBar />
 
+          <Route path="/" exact>
+            <div style={{ flex: '4' }}></div>
+          </Route>
+
           <Route path="/:project/" exact>
             <Dashboard />
           </Route>

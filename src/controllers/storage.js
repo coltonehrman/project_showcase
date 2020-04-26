@@ -19,7 +19,6 @@ const Storage = () => {
       if (staticData) {
         return Object.keys(_staticJSON.projects)
       }
-
       return Object.keys(_data.projects)
     },
     addProject: (project) => {

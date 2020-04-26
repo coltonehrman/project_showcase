@@ -3,12 +3,87 @@
   flex: 1;
   background-color: #fff;
   overflow: scroll;
+  display: flex;
+  flex-direction: column;
+}
+
+.navheader {
+  padding-left: 35px;
+  padding-top: 25px;
+  flex: 1;
+}
+
+.navheader--title {
+  margin: 0;
+  color: #3F3F3F;
+  font-size: 1.15rem;
 }
 
 .navbar--links {
-  margin: 50px 0;
+  flex: 10;
+}
+
+.navbar--footer {
+  flex: 1;
 }
 
 .navbar--links a {
   text-decoration: none;
+}
+
+.navlink {
+  display: block;
+  margin: 35px 0;
+  margin-left: 35px;
+  color: #9DA3B9;
+  text-decoration: none;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.navlink--active {
+  color: #3F3F3F;
+  border-right: 2px solid #705CF1;
+}
+
+.navlink--edit {
+  box-sizing: border-box;
+  border: 0;
+  width: calc(100% - 70px);
+  font-size: 1rem;
+}
+
+.navlink--add {
+  color: #3F3F3F;
+  margin: 0 25px;
+  margin-bottom: 15px;
+  padding: 10px;
+  background-color: #F5F6FA;
+  border: 0;
+  border-radius: 0.5rem;
+  text-transform: uppercase;
+  width: calc(100% - 50px);
+}
+
+.navlink--mode {
+  color: #F5F6FA;
+  margin: 0 25px;
+  margin-bottom: 25px;
+  padding: 10px;
+  border: 0;
+  border-radius: 0.5rem;
+  width: calc(100% - 50px);
+}
+
+.navlink--mode__static {
+  background-color: #705CF1;
+}
+
+.navlink--mode__edit {
+  background-color: #FF4136;
+}
+
+.navlink--mode__type {
+  font-weight: 700;
+  text-transform: uppercase;
 }

@@ -1,30 +1,30 @@
 {
   "projects": {
-    "project-planner": {
+    "static-project-planner": {
       "technologies": [
-        "React",
-        "JS",
-        "SASS",
-        "CSS3",
-        "HTML5"
+        "sReact",
+        "sJS",
+        "sSASS",
+        "sCSS3",
+        "sHTML5"
       ],
-      "description": "A project planner for beginners to help them plan out projects step by step. Helps junior developers start projects from scratch, with all things in mind before they even start coding. Focuses on project planning, setup, testing, and design.\n\nA project showcase for beginners to show off their work/projects to recruiters and friends. It helps the developer to really pick out and show the \"sparkles\" in each and every project.",
+      "description": "sA project planner for beginners to help them plan out projects step by step. Helps junior developers start projects from scratch, with all things in mind before they even start coding. Focuses on project planning, setup, testing, and design.\n\nA project showcase for beginners to show off their work/projects to recruiters and friends. It helps the developer to really pick out and show the \"sparkles\" in each and every project.",
       "goals": [
-        "Create an all-in-one platform to plan projects",
-        "Be able to organize and showcase projects",
-        "Have a platform that forces planning beforehand"
+        "sCreate an all-in-one platform to plan projects",
+        "sBe able to organize and showcase projects",
+        "sHave a platform that forces planning beforehand"
       ],
       "targetAudience": [
-        "Job Seekers",
-        "Students",
-        "Junior Developers",
-        "Project Managers"
+        "sJob Seekers",
+        "sStudents",
+        "sJunior Developers",
+        "sProject Managers"
       ],
       "impacts": [
-        "Help out struggling young developers",
-        "Create a planner mindset",
-        "Relieve having to worry about the details",
-        "Reduce stress when starting a new project"
+        "sHelp out struggling young developers",
+        "sCreate a planner mindset",
+        "sRelieve having to worry about the details",
+        "sReduce stress when starting a new project"
       ]
     }
   }
