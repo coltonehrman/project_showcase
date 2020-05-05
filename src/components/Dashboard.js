@@ -1,13 +1,15 @@
-import React, { useContext } from 'react'
+import React, { useState, useContext, useRef } from 'react'
 import { useParams, useHistory } from 'react-router-dom'
 import TechSection from './TechSection'
 import DescriptionSection from './DescriptionSection'
 import GoalSection from './GoalSection'
 import TargetAudienceSection from './TargetAudienceSection'
 import ImpactSection from './ImpactSection'
+import Section from './Section'
 import { ModeContext } from '../App'
 import storage from '../controllers/storage'
 import '../css/Dashboard.css'
+import '../css/ImageSection.css'
 
 const Title = ({ children }) => (
   <div className="dashboard--header-title">
@@ -40,10 +42,21 @@ const Dashboard = () => {
   const { mode } = useContext(ModeContext)
   const { project } = useParams()
   const history = useHistory()
+  const fileInput = useRef(null)
   
-  const store = storage.project(project, {
-    staticData: (mode === 'static')
-  })
+  const store = storage.project(project, mode)
+
+  if (!store) {
+    window.location = '/'
+  }
+
+  const [images, setImages] = useState(store.getImages())
+
+  const addImages = (toAdd) => {
+    const newImages = [...images, ...toAdd]
+    storage.project(project).setImages(newImages)
+    setImages(newImages)
+  }
 
   if (!store) {
     history.replace('/')
@@ -71,6 +84,47 @@ const Dashboard = () => {
         <TargetAudienceSection store={store} />
         <ImpactSection store={store} />
       </div>
+
+      <Section
+        title="Images"
+        bodyStyle={{
+          display: 'flex',
+          flexWrap: 'wrap',
+          alignItems: 'center'
+        }}
+      >
+        {mode === 'edit' &&
+          <div
+            className="dashboard--image__add"
+            onClick={() => fileInput.current.click()}
+          >
+            <span>+</span>
+            <input ref={fileInput} onChange={(e) => {
+              const processedImages = []
+              const totalFiles = e.target.files.length
+
+              for (let i = 0; i < totalFiles; ++i) {
+                const reader = new FileReader()
+                const file = e.target.files[i]
+
+                reader.onload = (e) => {
+                  processedImages.push(e.target.result)
+
+                  if (processedImages.length === totalFiles) {
+                    addImages(processedImages)
+                  }
+                }
+
+                reader.readAsDataURL(file)
+              }
+            }} style={{ display: 'none' }} type="file" multiple />
+          </div>
+        }
+
+        {images.map((image, i) => (
+          <img className="image" key={i} src={image} />
+        ))}
+      </Section>
 
       {/* <Section title="Drawings">
         <a href="https://i.ibb.co/hMNSRKW/IMG-1310.jpg" target="_blank" rel="noopener noreferrer">

@@ -4,10 +4,11 @@ import { ModeContext } from '../App'
 import storage from '../controllers/storage'
 import '../css/NavBar.css'
 
-const NavHeader = ({ title }) => {
+const NavHeader = ({ title, children }) => {
   return (
-    <div className="navheader">
-      <h4 className="navheader--title">{title}</h4>
+    <div className="navbar--header">
+      <h4 className="navbar--header__title">{title}</h4>
+      {children}
     </div>
   )
 }
@@ -51,27 +52,29 @@ const ProjectLinks = () => {
   if (!projects) return null
 
   return (
-    <>
-      <div className="navbar--links">
-        {projects.map((project, i) => (
-          (project.editing) ?
-            <input
-              key={i}
-              value={project.text}
-              className="navlink navlink--edit"
-              onChange={setProject(i)}
-              onBlur={saveProject(i)}
-              autoFocus
-            /> :
-            <NavLink
-              key={i}
-              to={`/${project.text}/`}
-              className="navlink"
-            >
-              {project.text}
-            </NavLink>
-        ))}
-      </div>
+    <div className="navbar">
+      <NavHeader title="My Projects">
+        <div className="navbar--links">
+          {projects.map((project, i) => (
+            (project.editing) ?
+              <input
+                key={i}
+                value={project.text}
+                className="navlink navlink--edit"
+                onChange={setProject(i)}
+                onBlur={saveProject(i)}
+                autoFocus
+              /> :
+              <NavLink
+                key={i}
+                to={`/${project.text}/`}
+                className="navlink"
+              >
+                {project.text}
+              </NavLink>
+          ))}
+        </div>
+      </NavHeader>
 
       <div className="navbar--footer">
         {mode === 'edit' &&
@@ -105,7 +108,7 @@ const ProjectLinks = () => {
           MODE: <span className="navlink--mode__type">{mode}</span>
         </button>
       </div>
-    </>
+    </div>
   )
 }
 
@@ -113,95 +116,97 @@ const ProjectDetailLinks = () => {
   const { project } = useParams()
 
   return (
-    <div className="navbar--links">
-      <NavLink
-        to={`/${project}/`}
-        className="navlink"
-        activeClassName="navlink--active"
-        replace
-        exact
-      >
-        Dashboard
-      </NavLink>
+    <div className="navbar">
+      <NavHeader title={project}>
+        <div className="navbar--links">
+          <NavLink
+            to={`/${project}/`}
+            className="navlink"
+            activeClassName="navlink--active"
+            replace
+            exact
+          >
+            Dashboard
+          </NavLink>
 
-      <NavLink
-        to={`/${project}/design/ideas`}
-        className="navlink"
-        activeClassName="navlink--active"
-        replace
-        exact
-      >
-        Design Ideas
-      </NavLink>
+          {/* <NavLink
+            to={`/${project}/design/ideas`}
+            className="navlink"
+            activeClassName="navlink--active"
+            replace
+            exact
+          >
+            Design Ideas
+          </NavLink> */}
 
-      <NavLink
-        to={`/${project}/react-components`}
-        className="navlink"
-        activeClassName="navlink--active"
-        replace
-        exact
-      >
-        React Components
-      </NavLink>
+          {/* <NavLink
+            to={`/${project}/react-components`}
+            className="navlink"
+            activeClassName="navlink--active"
+            replace
+            exact
+          >
+            React Components
+          </NavLink> */}
 
-      <NavLink
-        to={`/${project}/timeline`}
-        className="navlink"
-        activeClassName="navlink--active"
-        replace
-        exact
-      >
-        Timeline
-      </NavLink>
+          {/* <NavLink
+            to={`/${project}/timeline`}
+            className="navlink"
+            activeClassName="navlink--active"
+            replace
+            exact
+          >
+            Timeline
+          </NavLink> */}
 
-      <NavLink
-        to={`/${project}/uml`}
-        className="navlink"
-        activeClassName="navlink--active"
-        replace
-        exact
-      >
-        UML
-      </NavLink>
+          {/* <NavLink
+            to={`/${project}/uml`}
+            className="navlink"
+            activeClassName="navlink--active"
+            replace
+            exact
+          >
+            UML
+          </NavLink> */}
 
-      <NavLink
-        to={`/${project}/tasks`}
-        className="navlink"
-        activeClassName="navlink--active"
-        replace
-        exact
-      >
-        Tasks
-      </NavLink>
+          {/* <NavLink
+            to={`/${project}/tasks`}
+            className="navlink"
+            activeClassName="navlink--active"
+            replace
+            exact
+          >
+            Tasks
+          </NavLink> */}
 
-      <NavLink
-        to={`/${project}/statistics`}
-        className="navlink"
-        activeClassName="navlink--active"
-        replace
-        exact
-      >
-        Statistics
-      </NavLink>
+          {/* <NavLink
+            to={`/${project}/statistics`}
+            className="navlink"
+            activeClassName="navlink--active"
+            replace
+            exact
+          >
+            Statistics
+          </NavLink> */}
 
-      <NavLink
-        to={`/${project}/settings`}
-        className="navlink"
-        activeClassName="navlink--active"
-        replace
-        exact
-      >
-        Settings
-      </NavLink>
+          {/* <NavLink
+            to={`/${project}/settings`}
+            className="navlink"
+            activeClassName="navlink--active"
+            replace
+            exact
+          >
+            Settings
+          </NavLink> */}
+        </div>
+      </NavHeader>
     </div>
   )
 }
 
 const NavBar = () => {
   return (
-    <div className="navbar">
-      {/* <NavHeader title="Project Name" /> */}
-      
+    <>
       <Route path="/" exact>
         <ProjectLinks />
       </Route>
@@ -209,7 +214,7 @@ const NavBar = () => {
       <Route path="/:project">
         <ProjectDetailLinks />
       </Route>
-    </div>
+    </>
   )
 }
 

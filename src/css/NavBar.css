@@ -7,20 +7,14 @@
   flex-direction: column;
 }
 
-.navheader {
-  padding-left: 35px;
-  padding-top: 25px;
-  flex: 1;
-}
-
-.navheader--title {
-  margin: 0;
-  color: #3F3F3F;
-  font-size: 1.15rem;
-}
-
-.navbar--links {
+.navbar--header {
   flex: 10;
+}
+
+.navbar--header__title {
+  margin: 35px;
+  color: #705CF1;
+  font-size: 1.15rem;
 }
 
 .navbar--footer {

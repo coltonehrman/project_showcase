@@ -34,13 +34,15 @@ const Storage = () => {
         _save()
       }
     },
-    project: (project, { staticData = false } = {}) => {
+    project: (project, mode = 'static') => {
       let _get
 
-      if (staticData) {
+      if (mode === 'static') {
         _get = () => _staticJSON.projects[project]
-      } else {
+      } else if (mode === 'edit') {
         _get = () => _data.projects[project]
+      } else {
+        throw new Error(`Invalid mode for store: ${mode}`)
       }
 
       if (!_get()) {
@@ -54,6 +56,7 @@ const Storage = () => {
         getGoals: () => _get().goals || [],
         getTargetAudience: () => _get().targetAudience || [],
         getImpacts: () => _get().impacts || [],
+        getImages: () => _get().images || [],
         // SETTERS
         setTech: (technologies) => {
           _get().technologies = technologies
@@ -74,7 +77,11 @@ const Storage = () => {
         setImpacts: (impacts) => {
           _get().impacts = impacts
           _save()
-        }
+        },
+        setImages: (images) => {
+          _get().images = images
+          _save()
+        },
       }
 
       return _pc
