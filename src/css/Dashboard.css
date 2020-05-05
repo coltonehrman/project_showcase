@@ -108,12 +108,8 @@
   width: 1rem;
 }
 
-.drawing-image {
-  height: 200px;
+.image {
+  width: 200px;
   border-radius: 1rem;
-  margin: 0 25px;
-}
-
-.drawing-image:first-child {
-  margin-left: 0;
+  margin: 20px;
 }
