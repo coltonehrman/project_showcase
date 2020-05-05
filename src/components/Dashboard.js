@@ -54,7 +54,8 @@ const Dashboard = () => {
 
   const addImages = (toAdd) => {
     const newImages = [...images, ...toAdd]
-    storage.project(project).setImages(newImages)
+    console.log(newImages)
+    store.setImages(newImages)
     setImages(newImages)
   }
 
