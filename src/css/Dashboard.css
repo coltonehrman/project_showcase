@@ -109,7 +109,6 @@
 }
 
 .image {
-  width: 200px;
-  border-radius: 1rem;
+  height: 150px;
   margin: 20px;
 }

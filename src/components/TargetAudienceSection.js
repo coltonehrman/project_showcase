@@ -1,16 +1,19 @@
-import React, { useState, useContext } from 'react'
+import React, { useState, useContext, useEffect } from 'react'
 import Section from './Section'
 import Card from './Card'
 import { ModeContext } from '../App'
 
 const TargetAudienceSection = ({ store }) => {
   const { mode } = useContext(ModeContext)
-  
-  const [audience, setAudience] = useState(
-    store.getTargetAudience().map(ta => ({
-      text: ta, editing: false
-    }))
-  )
+  const [audience, setAudience] = useState([])
+
+  useEffect(() => {
+    setAudience(
+      store.getTargetAudience().map(ta => ({
+        text: ta, editing: false
+      }))
+    )
+  }, [store, mode])
 
   const [editing, setEditing] = useState(false)
 

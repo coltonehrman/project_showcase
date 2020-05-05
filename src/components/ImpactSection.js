@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react'
+import React, { useState, useContext, useEffect } from 'react'
 import Section from './Section'
 import Card from './Card'
 import { ModeContext } from '../App'
@@ -6,11 +6,15 @@ import { ModeContext } from '../App'
 const ImpactSection = ({ store }) => {
   const { mode } = useContext(ModeContext)
 
-  const [impacts, setImpacts] = useState(
-    store.getImpacts().map(i => ({
-      text: i, editing: false
-    }))
-  )
+  const [impacts, setImpacts] = useState([])
+
+  useEffect(() => {
+    setImpacts(
+      store.getImpacts().map(i => ({
+        text: i, editing: false
+      }))
+    )
+  }, [store, mode])
 
   const [editing, setEditing] = useState(false)
 

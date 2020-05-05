@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react'
+import React, { useState, useContext, useEffect } from 'react'
 import TextareaAutosize from 'react-textarea-autosize'
 import Section from './Section'
 import Card from './Card'
@@ -6,10 +6,13 @@ import { ModeContext } from '../App'
 
 const DescriptionSection = ({ store }) => {
   const { mode } = useContext(ModeContext)
+  const [description, setDescription] = useState('')
 
-  const [description, setDescription] = useState(
-    store.getDescription()
-  )
+  useEffect(() => {
+    setDescription(
+      store.getDescription()
+    )
+  }, [store, mode])
   
   const [editing, setEditing] = useState(false)
 

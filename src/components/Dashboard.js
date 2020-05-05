@@ -1,4 +1,4 @@
-import React, { useState, useContext, useRef } from 'react'
+import React, { useState, useContext, useRef, useEffect } from 'react'
 import { useParams, useHistory } from 'react-router-dom'
 import TechSection from './TechSection'
 import DescriptionSection from './DescriptionSection'
@@ -43,18 +43,20 @@ const Dashboard = () => {
   const { project } = useParams()
   const history = useHistory()
   const fileInput = useRef(null)
-  
   const store = storage.project(project, mode)
+
+  const [images, setImages] = useState([])
+
+  useEffect(() => {
+    setImages(store.getImages())
+  }, [mode])
 
   if (!store) {
     window.location = '/'
   }
 
-  const [images, setImages] = useState(store.getImages())
-
   const addImages = (toAdd) => {
     const newImages = [...images, ...toAdd]
-    console.log(newImages)
     store.setImages(newImages)
     setImages(newImages)
   }

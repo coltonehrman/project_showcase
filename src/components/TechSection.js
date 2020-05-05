@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react'
+import React, { useState, useContext, useEffect } from 'react'
 import Section from './Section'
 import { ModeContext } from '../App'
 
@@ -64,12 +64,15 @@ const TechTab = ({
 
 const TechSection = ({ store }) => {
   const { mode } = useContext(ModeContext)
+  const [tech, setTech] = useState([])
 
-  const [tech, setTech] = useState(
-    store.getTech().map(t => ({
-      text: t, editing: false
-    }))
-  )
+  useEffect(() => {
+    setTech(
+      store.getTech().map(t => ({
+        text: t, editing: false
+      }))
+    )
+  }, [store, mode])
 
   const [editing, setEditing] = useState(false)
 

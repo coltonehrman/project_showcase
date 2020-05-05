@@ -13,8 +13,51 @@ const NavHeader = ({ title, children }) => {
   )
 }
 
-const ProjectLinks = () => {
+const NavFooter = ({
+  addNewProject = false
+}) => {
   const { mode, setMode } = useContext(ModeContext)
+
+  return (
+    <div className="navbar--footer">
+      {mode === 'edit' &&
+        <>
+          {addNewProject &&
+            <button
+              className="navlink navlink--add"
+              onClick={addNewProject}
+            >
+              + New Project
+            </button>
+          }
+
+          <NavLink
+            to="/?export"
+            className="navlink navlink--export"
+          >
+            Export Data
+          </NavLink>
+        </>
+      }
+
+      <button
+        className={`navlink navlink--mode navlink--mode__${mode}`}
+        onClick={() => {
+          if (mode === 'static') {
+            setMode('edit')
+          } else if (mode === 'edit') {
+            setMode('static')
+          }
+        }}
+      >
+        MODE: <span className="navlink--mode__type">{mode}</span>
+      </button>
+    </div>
+  )
+}
+
+const ProjectLinks = () => {
+  const { mode } = useContext(ModeContext)
 
   const [projects, setProjects] = useState(null)
 
@@ -76,38 +119,7 @@ const ProjectLinks = () => {
         </div>
       </NavHeader>
 
-      <div className="navbar--footer">
-        {mode === 'edit' &&
-          <>
-            <button
-              className="navlink navlink--add"
-              onClick={addNewProject}
-            >
-              + New Project
-            </button>
-
-            <NavLink
-              to="/?export"
-              className="navlink navlink--export"
-            >
-              Export Data
-            </NavLink>
-          </>
-        }
-
-        <button
-          className={`navlink navlink--mode navlink--mode__${mode}`}
-          onClick={() => {
-            if (mode === 'static') {
-              setMode('edit')
-            } else if (mode === 'edit') {
-              setMode('static')
-            }
-          }}
-        >
-          MODE: <span className="navlink--mode__type">{mode}</span>
-        </button>
-      </div>
+      <NavFooter addNewProject={addNewProject} />
     </div>
   )
 }
@@ -200,6 +212,8 @@ const ProjectDetailLinks = () => {
           </NavLink> */}
         </div>
       </NavHeader>
+
+      <NavFooter />
     </div>
   )
 }

@@ -1,16 +1,19 @@
-import React, { useState, useContext } from 'react'
+import React, { useState, useContext, useEffect } from 'react'
 import Section from './Section'
 import Card from './Card'
 import { ModeContext } from '../App'
 
 const GoalSection = ({ store }) => {
   const { mode } = useContext(ModeContext)
+  const [goals, setGoals] = useState([])
 
-  const [goals, setGoals] = useState(
-    store.getGoals().map(g => ({
-      text: g, editing: false
-    }))
-  )
+  useEffect(() => {
+    setGoals(
+      store.getGoals().map(g => ({
+        text: g, editing: false
+      }))
+    )
+  }, [store, mode])
 
   const [editing, setEditing] = useState(false)
 
