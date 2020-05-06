@@ -39,19 +39,19 @@ const Storage = () => {
         _save()
       }
     },
+    setProject: (project, data) => {
+      _data.projects[project] = data
+      _save()
+    },
     project: (project, mode = 'static') => {
       let _get
 
       if (mode === 'static') {
-        _get = () => _staticJSON.projects[project]
+        _get = () => _staticJSON.projects[project] || {}
       } else if (mode === 'edit') {
-        _get = () => _data.projects[project]
+        _get = () => _data.projects[project] || {}
       } else {
         throw new Error(`Invalid mode for store: ${mode}`)
-      }
-
-      if (!_get()) {
-        return null
       }
 
       const _pc = {

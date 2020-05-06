@@ -13,7 +13,7 @@ const GoalSection = ({ store }) => {
         text: g, editing: false
       }))
     )
-  }, [store, mode])
+  }, [mode])
 
   const [editing, setEditing] = useState(false)
 

@@ -13,7 +13,7 @@ const TargetAudienceSection = ({ store }) => {
         text: ta, editing: false
       }))
     )
-  }, [store, mode])
+  }, [mode])
 
   const [editing, setEditing] = useState(false)
 

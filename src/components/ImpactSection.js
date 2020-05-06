@@ -14,7 +14,7 @@ const ImpactSection = ({ store }) => {
         text: i, editing: false
       }))
     )
-  }, [store, mode])
+  }, [mode])
 
   const [editing, setEditing] = useState(false)
 

@@ -44,10 +44,8 @@ const Dashboard = () => {
   const [images, setImages] = useState([])
 
   useEffect(() => {
-    if (store) {
-      setImages(store.getImages())
-    }
-  }, [store, mode])
+    setImages(store.getImages())
+  }, [mode])
 
   if (!store) {
     window.location = '/'

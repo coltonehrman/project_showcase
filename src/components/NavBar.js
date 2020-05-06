@@ -24,9 +24,7 @@ const NavHeader = ({ title, children }) => {
   )
 }
 
-const NavFooter = ({
-  addNewProject = false
-}) => {
+const NavFooter = ({ currentProject = null, addNewProject = false }) => {
   const { mode, setMode } = useContext(ModeContext)
 
   return (
@@ -54,6 +52,13 @@ const NavFooter = ({
       <button
         className={`navlink navlink--mode navlink--mode__${mode}`}
         onClick={() => {
+          if (mode === 'static') {
+            // check if project doesn't exist in edit mode
+            if (currentProject && !storage.project(currentProject, 'edit')) {
+              // set static project for editing
+              storage.setProject(currentProject, storage.getJSON().projects[currentProject])
+            }
+          }
           if (mode === 'static') {
             setMode('edit')
           } else if (mode === 'edit') {
@@ -152,7 +157,7 @@ const ProjectDetailLinks = () => {
         </div>
       </NavHeader>
 
-      <NavFooter />
+      <NavFooter currentProject={project} />
     </div>
   )
 }

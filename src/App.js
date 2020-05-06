@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useContext } from 'react';
 import { Route, useHistory } from 'react-router-dom'
 import NavBar from './components/NavBar'
 import Dashboard from './components/Dashboard'
@@ -26,9 +26,14 @@ function ProjectCards() {
         if (i !== 3) paddingRight = '12.5px'
         if (i !== 0) paddingLeft = '12.5px'
 
-        let background = null
+        let background = ''
+        let backgroundSize = ''
         const bgImage = storage.project(project, mode).getImages()[0]
-        if (bgImage) background = `url(${bgImage}) no-repeat center center`
+
+        if (bgImage) {
+          background = `url(${bgImage}) no-repeat center center`
+          backgroundSize = 'cover'
+        }
 
         return (
           <Section
@@ -40,7 +45,7 @@ function ProjectCards() {
             <Card
               style={{
                 background,
-                backgroundSize: 'cover',
+                backgroundSize,
                 height: '250px',
                 borderRadius: '0.5rem',
                 cursor: 'pointer'

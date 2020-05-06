@@ -9,10 +9,8 @@ const DescriptionSection = ({ store }) => {
   const [description, setDescription] = useState('')
 
   useEffect(() => {
-    setDescription(
-      store.getDescription()
-    )
-  }, [store, mode])
+    setDescription(store.getDescription())
+  }, [mode])
   
   const [editing, setEditing] = useState(false)
 

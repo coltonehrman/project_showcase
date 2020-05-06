@@ -72,7 +72,7 @@ const TechSection = ({ store }) => {
         text: t, editing: false
       }))
     )
-  }, [store, mode])
+  }, [mode])
 
   const [editing, setEditing] = useState(false)
 
