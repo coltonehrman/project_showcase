@@ -54,7 +54,7 @@ const NavFooter = ({ currentProject = null, addNewProject = false }) => {
         onClick={() => {
           if (mode === 'static') {
             // check if project doesn't exist in edit mode
-            if (currentProject && !storage.project(currentProject, 'edit')) {
+            if (currentProject && storage.getProjects('edit').indexOf(currentProject) === -1) {
               // set static project for editing
               storage.setProject(currentProject, storage.getJSON().projects[currentProject])
             }
