@@ -39,11 +39,12 @@ const Dashboard = () => {
   const { mode } = useContext(ModeContext)
   const { project } = useParams()
   const fileInput = useRef(null)
-  const store = storage.project(project, mode)
+  let store = storage.project(project, mode)
 
   const [images, setImages] = useState([])
 
   useEffect(() => {
+    store = storage.project(project, mode)
     setImages(store.getImages())
   }, [mode])
 
