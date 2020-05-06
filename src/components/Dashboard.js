@@ -1,5 +1,5 @@
 import React, { useState, useContext, useRef, useEffect } from 'react'
-import { useParams, useHistory } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import TechSection from './TechSection'
 import DescriptionSection from './DescriptionSection'
 import GoalSection from './GoalSection'
@@ -17,10 +17,7 @@ const Title = ({ children }) => (
   </div>
 )
 
-const SocialLink = ({
-  url,
-  icon
-}) => {
+const SocialLink = ({ url, icon }) => {
   let Icon
 
   if (icon === 'github') {
@@ -41,29 +38,26 @@ const SocialLink = ({
 const Dashboard = () => {
   const { mode } = useContext(ModeContext)
   const { project } = useParams()
-  const history = useHistory()
   const fileInput = useRef(null)
   const store = storage.project(project, mode)
 
   const [images, setImages] = useState([])
 
   useEffect(() => {
-    setImages(store.getImages())
-  }, [mode])
+    if (store) {
+      setImages(store.getImages())
+    }
+  }, [store, mode])
 
   if (!store) {
     window.location = '/'
+    return null
   }
 
   const addImages = (toAdd) => {
     const newImages = [...images, ...toAdd]
     store.setImages(newImages)
     setImages(newImages)
-  }
-
-  if (!store) {
-    history.replace('/')
-    return null
   }
 
   return (

@@ -15,18 +15,23 @@ const Storage = () => {
   }
 
   const _controller = {
-    getJSON: ({ staticData = false } = {}) => {
-      if (staticData) {
-        return JSON.stringify(_staticJSON, null, 2)
+    getJSON: (mode = 'static') => {
+      if (mode === 'static') {
+        return _staticJSON
+      } else if (mode === 'edit') {
+        return _data
+      } else {
+        throw new Error(`Invalid mode for store: ${mode}`)
       }
-
-      return JSON.stringify(_data, null, 2)
     },
-    getProjects: ({ staticData = false } = {}) => {
-      if (staticData) {
+    getProjects: (mode = 'static') => {
+      if (mode === 'static') {
         return Object.keys(_staticJSON.projects)
+      } else if (mode === 'edit') {
+        return Object.keys(_data.projects)
+      } else {
+        throw new Error(`Invalid mode for store: ${mode}`)
       }
-      return Object.keys(_data.projects)
     },
     addProject: (project) => {
       if (!_data.projects[project]) {

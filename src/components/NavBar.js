@@ -4,6 +4,17 @@ import { ModeContext } from '../App'
 import storage from '../controllers/storage'
 import '../css/NavBar.css'
 
+function download(filename, json) {
+  const $e = document.createElement('a')
+  $e.setAttribute('href', 'data:text/json;charset=utf-8,' + encodeURIComponent(JSON.stringify(json)))
+  $e.setAttribute('download', filename)
+
+  $e.style.display = 'none'
+  document.body.appendChild($e)
+  $e.click()
+  document.body.removeChild($e)
+}
+
 const NavHeader = ({ title, children }) => {
   return (
     <div className="navbar--header">
@@ -31,12 +42,12 @@ const NavFooter = ({
             </button>
           }
 
-          <NavLink
-            to="/?export"
+          <button
             className="navlink navlink--export"
+            onClick={() => download('projects.json', storage.getJSON(mode))}
           >
             Export Data
-          </NavLink>
+          </button>
         </>
       }
 
@@ -63,9 +74,7 @@ const ProjectLinks = () => {
 
   useEffect(() => {
     setProjects(
-      storage.getProjects({
-        staticData: (mode === 'static')
-      }).map(project => ({
+      storage.getProjects(mode).map(project => ({
         text: project, editing: false
       }))
     )
@@ -140,76 +149,6 @@ const ProjectDetailLinks = () => {
           >
             Dashboard
           </NavLink>
-
-          {/* <NavLink
-            to={`/${project}/design/ideas`}
-            className="navlink"
-            activeClassName="navlink--active"
-            replace
-            exact
-          >
-            Design Ideas
-          </NavLink> */}
-
-          {/* <NavLink
-            to={`/${project}/react-components`}
-            className="navlink"
-            activeClassName="navlink--active"
-            replace
-            exact
-          >
-            React Components
-          </NavLink> */}
-
-          {/* <NavLink
-            to={`/${project}/timeline`}
-            className="navlink"
-            activeClassName="navlink--active"
-            replace
-            exact
-          >
-            Timeline
-          </NavLink> */}
-
-          {/* <NavLink
-            to={`/${project}/uml`}
-            className="navlink"
-            activeClassName="navlink--active"
-            replace
-            exact
-          >
-            UML
-          </NavLink> */}
-
-          {/* <NavLink
-            to={`/${project}/tasks`}
-            className="navlink"
-            activeClassName="navlink--active"
-            replace
-            exact
-          >
-            Tasks
-          </NavLink> */}
-
-          {/* <NavLink
-            to={`/${project}/statistics`}
-            className="navlink"
-            activeClassName="navlink--active"
-            replace
-            exact
-          >
-            Statistics
-          </NavLink> */}
-
-          {/* <NavLink
-            to={`/${project}/settings`}
-            className="navlink"
-            activeClassName="navlink--active"
-            replace
-            exact
-          >
-            Settings
-          </NavLink> */}
         </div>
       </NavHeader>
 
